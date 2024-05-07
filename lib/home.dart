@@ -40,17 +40,17 @@ class FormInputs extends StatefulWidget {
 }
 
 class _FormInputsState extends State<FormInputs> {
-  int age = 0;
+  int unit = 0;
 
   void increaseAge() {
     setState(() {
-      age += 1;
+      unit += 1;
     });
   }
   void decreaseAge() {
     setState(() {
-      if(age > 0) {
-        age -= 1;
+      if(unit > 0) {
+        unit -= 1;
       }
     });
   }
@@ -60,7 +60,7 @@ class _FormInputsState extends State<FormInputs> {
       children: [
         Row(
           children: [
-            Text('Age: ${age}'),
+            Text('unit: ${unit}'),
             const Expanded(child: const SizedBox()),
             TextButton(
               onPressed: decreaseAge, 
