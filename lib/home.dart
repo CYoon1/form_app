@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:form_app/form.dart';
 
 
 class Home extends StatelessWidget {
@@ -18,7 +19,8 @@ class Home extends StatelessWidget {
             child: const Text("Name: _____"),
           ),
           Container(
-            child: const FormInputs(),
+          //   padding: const EdgeInsets.all(20),
+            child: const ResponseForm(),
           ),
           Expanded(
             child: Image.asset('assets/red-cross-background.jpg',
@@ -32,60 +34,60 @@ class Home extends StatelessWidget {
   }
 }
 
-class FormInputs extends StatefulWidget {
-  const FormInputs({super.key});
+// class FormInputs extends StatefulWidget {
+//   const FormInputs({super.key});
 
-  @override
-  State<FormInputs> createState() => _FormInputsState();
-}
+//   @override
+//   State<FormInputs> createState() => _FormInputsState();
+// }
 
-class _FormInputsState extends State<FormInputs> {
-  int unit = 0;
+// class _FormInputsState extends State<FormInputs> {
+//   int unit = 0;
 
-  void increaseAge() {
-    setState(() {
-      unit += 1;
-    });
-  }
-  void decreaseAge() {
-    setState(() {
-      if(unit > 0) {
-        unit -= 1;
-      }
-    });
-  }
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Text('unit: ${unit}'),
-            const Expanded(child: const SizedBox()),
-            TextButton(
-              onPressed: decreaseAge, 
-              style: TextButton.styleFrom(
-                backgroundColor: Colors.blue[600],
-                foregroundColor: Colors.white,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(5))
-                )
-              ),
-              child: const Text('-')),
-            TextButton(
-              onPressed: increaseAge, 
-              style: TextButton.styleFrom(
-                backgroundColor: Colors.red[600],
-                foregroundColor: Colors.white,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(5))
-                )
-              ),
-              child: const Text('+')),
-          ],
-          )
+//   void increaseAge() {
+//     setState(() {
+//       unit += 1;
+//     });
+//   }
+//   void decreaseAge() {
+//     setState(() {
+//       if(unit > 0) {
+//         unit -= 1;
+//       }
+//     });
+//   }
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       children: [
+//         Row(
+//           children: [
+//             Text('unit: ${unit}'),
+//             const Expanded(child: const SizedBox()),
+//             TextButton(
+//               onPressed: decreaseAge, 
+//               style: TextButton.styleFrom(
+//                 backgroundColor: Colors.blue[600],
+//                 foregroundColor: Colors.white,
+//                 shape: const RoundedRectangleBorder(
+//                   borderRadius: BorderRadius.all(Radius.circular(5))
+//                 )
+//               ),
+//               child: const Text('-')),
+//             TextButton(
+//               onPressed: increaseAge, 
+//               style: TextButton.styleFrom(
+//                 backgroundColor: Colors.red[600],
+//                 foregroundColor: Colors.white,
+//                 shape: const RoundedRectangleBorder(
+//                   borderRadius: BorderRadius.all(Radius.circular(5))
+//                 )
+//               ),
+//               child: const Text('+')),
+//           ],
+//           )
 
-      ],
-    );
-  }
-}
+//       ],
+//     );
+//   }
+// }
