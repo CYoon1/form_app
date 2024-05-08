@@ -16,7 +16,12 @@ class Home extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
-            child: const Text("Name: _____"),
+            child: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Enter name here',
+                    ),
+                  ),
           ),
           Container(
           //   padding: const EdgeInsets.all(20),

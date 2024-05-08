@@ -10,9 +10,29 @@ class ResponseForm extends StatefulWidget {
 
 class _ResponseFormState extends State<ResponseForm> {
 
+  int total = 0;
   int painIntensity = 0;
   int careDifficulty = 0;
   int liftDifficulty = 0;
+
+  int walkDifficulty = 0;
+  int sitDifficulty = 0;
+
+  void getTotal() {
+    setState(() {
+      total = painIntensity + careDifficulty + liftDifficulty + walkDifficulty + sitDifficulty;
+    });
+  }
+  void resetTotal() {
+    setState(() {
+      total = 0;
+      painIntensity = 0;
+      careDifficulty = 0;
+      liftDifficulty = 0;
+      walkDifficulty = 0;
+      sitDifficulty = 0;
+    });
+  }
 
   void incPain() {
     setState(() {
@@ -53,15 +73,57 @@ class _ResponseFormState extends State<ResponseForm> {
     });
   }
 
+
+  void incWalkDif() {
+    setState(() {
+      walkDifficulty = walkDifficulty < 5 ? walkDifficulty + 1 : 5;
+    });
+  }
+  void decWalkDif() {
+    setState(() {
+      if(walkDifficulty > 0) {
+        walkDifficulty -= 1;
+      }
+    });
+  }
+
+
+  void incSitDif() {
+    setState(() {
+      sitDifficulty = sitDifficulty < 5 ? sitDifficulty + 1 : 5;
+    });
+  }
+  void decSitDif() {
+    setState(() {
+      if(sitDifficulty > 0) {
+        sitDifficulty -= 1;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Row(
           children: [
-            Text('Pain Intensity: '),
-            const Expanded(child: const SizedBox()),
-            Text(' ${painIntensity} '),
+            Text('Total: $total'),
+            const Expanded(child: SizedBox()),
+            TextButton(
+              onPressed: getTotal,
+              child: const Text('Calculate Total'),
+            ),
+            TextButton(
+              onPressed: resetTotal,
+              child: const Text('Reset'),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            const Text('Pain Intensity: '),
+            const Expanded(child: SizedBox()),
+            Text(' $painIntensity '),
             DecreaseButton(
               onPressed: decPain,
               ),
@@ -72,9 +134,9 @@ class _ResponseFormState extends State<ResponseForm> {
         ),
         Row(
           children: [
-            Text('Personal Care Difficulty: '),
-            const Expanded(child: const SizedBox()),
-            Text(' ${careDifficulty} '),
+            const Text('Personal Care Difficulty: '),
+            const Expanded(child: SizedBox()),
+            Text(' $careDifficulty '),
             DecreaseButton(
               onPressed: decCareDif,
               ),
@@ -85,9 +147,9 @@ class _ResponseFormState extends State<ResponseForm> {
         ),
         Row(
           children: [
-            Text('Lifting Difficulty: '),
-            const Expanded(child: const SizedBox()),
-            Text(' ${liftDifficulty} '),
+            const Text('Lifting Difficulty: '),
+            const Expanded(child: SizedBox()),
+            Text(' $liftDifficulty '),
             DecreaseButton(
               onPressed: decLiftDif,
               ),
@@ -96,7 +158,33 @@ class _ResponseFormState extends State<ResponseForm> {
               ),
           ],
         ),
-
+        Row(
+          children: [
+            const Text('Walking Difficulty: '),
+            const Expanded(child: SizedBox()),
+            Text(' $walkDifficulty '),
+            DecreaseButton(
+              onPressed: decWalkDif,
+              ),
+            IncreaseButton(
+              onPressed: incWalkDif,
+              ),
+          ],
+        ),
+        
+        Row(
+          children: [
+            const Text('Sitting Difficulty: '),
+            const Expanded(child: SizedBox()),
+            Text(' $sitDifficulty '),
+            DecreaseButton(
+              onPressed: decSitDif,
+              ),
+            IncreaseButton(
+              onPressed: incSitDif,
+              ),
+          ],
+        ),
       ],
     );
   }
