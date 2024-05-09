@@ -18,9 +18,12 @@ class _ResponseFormState extends State<ResponseForm> {
   int walkDifficulty = 0;
   int sitDifficulty = 0;
 
+  int standDifficulty = 0;
+  int sleepDifficulty = 0;
+
   void getTotal() {
     setState(() {
-      total = painIntensity + careDifficulty + liftDifficulty + walkDifficulty + sitDifficulty;
+      total = painIntensity + careDifficulty + liftDifficulty + walkDifficulty + sitDifficulty + standDifficulty + sleepDifficulty;
     });
   }
   void resetTotal() {
@@ -73,7 +76,6 @@ class _ResponseFormState extends State<ResponseForm> {
     });
   }
 
-
   void incWalkDif() {
     setState(() {
       walkDifficulty = walkDifficulty < 5 ? walkDifficulty + 1 : 5;
@@ -87,7 +89,6 @@ class _ResponseFormState extends State<ResponseForm> {
     });
   }
 
-
   void incSitDif() {
     setState(() {
       sitDifficulty = sitDifficulty < 5 ? sitDifficulty + 1 : 5;
@@ -97,6 +98,32 @@ class _ResponseFormState extends State<ResponseForm> {
     setState(() {
       if(sitDifficulty > 0) {
         sitDifficulty -= 1;
+      }
+    });
+  }
+
+  void incStandDif() {
+    setState(() {
+      standDifficulty = standDifficulty < 5 ? standDifficulty + 1 : 5;
+    });
+  }
+  void decStandDif() {
+    setState(() {
+      if(standDifficulty > 0) {
+        standDifficulty -= 1;
+      }
+    });
+  }
+
+  void incSleepDif() {
+    setState(() {
+      sleepDifficulty = sleepDifficulty < 5 ? sleepDifficulty + 1 : 5;
+    });
+  }
+  void decSleepDif() {
+    setState(() {
+      if(sleepDifficulty > 0) {
+        sleepDifficulty -= 1;
       }
     });
   }
@@ -185,8 +212,46 @@ class _ResponseFormState extends State<ResponseForm> {
               ),
           ],
         ),
+
+        Row(
+          children: [
+            const Text('Standing Difficulty: '),
+            const Expanded(child: SizedBox()),
+            Text(' $standDifficulty '),
+            DecreaseButton(
+              onPressed: decStandDif,
+              ),
+            IncreaseButton(
+              onPressed: incStandDif,
+              ),
+          ],
+        ),
+
+        Row(
+          children: [
+            const Text('Sleeping Difficulty: '),
+            const Expanded(child: SizedBox()),
+            Text(' $sleepDifficulty '),
+            DecreaseButton(
+              onPressed: decSleepDif,
+              ),
+            IncreaseButton(
+              onPressed: incSleepDif,
+              ),
+          ],
+        ),
       ],
     );
   }
 }
 
+class FormWrapper extends StatelessWidget {
+  const FormWrapper({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const SingleChildScrollView(
+      child: ResponseForm(),
+    );
+  }
+}
