@@ -25,7 +25,9 @@ class Home extends StatelessWidget {
           ),
           Container(
           //   padding: const EdgeInsets.all(20),
-            child: const FormWrapper(),
+            child: Expanded(
+              child: FormWrapper(),
+              ),
           ),
           Expanded(
             child: Image.asset('assets/red-cross-background.jpg',
