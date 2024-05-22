@@ -13,17 +13,22 @@ class _ResponseFormState extends State<ResponseForm> {
   int total = 0;
   int painIntensity = 0;
   int careDifficulty = 0;
+
   int liftDifficulty = 0;
-
   int walkDifficulty = 0;
+  
   int sitDifficulty = 0;
-
   int standDifficulty = 0;
+
   int sleepDifficulty = 0;
+  int socialDifficulty = 0;
+
+  int travelDifficulty = 0;
+  int employHomeDifficulty = 0;
 
   void getTotal() {
     setState(() {
-      total = painIntensity + careDifficulty + liftDifficulty + walkDifficulty + sitDifficulty + standDifficulty + sleepDifficulty;
+      total = painIntensity + careDifficulty + liftDifficulty + walkDifficulty + sitDifficulty + standDifficulty + sleepDifficulty + socialDifficulty + travelDifficulty + employHomeDifficulty;
     });
   }
   void resetTotal() {
@@ -34,6 +39,9 @@ class _ResponseFormState extends State<ResponseForm> {
       liftDifficulty = 0;
       walkDifficulty = 0;
       sitDifficulty = 0;
+      socialDifficulty = 0;
+      travelDifficulty = 0;
+      employHomeDifficulty = 0;
     });
   }
 
@@ -124,6 +132,45 @@ class _ResponseFormState extends State<ResponseForm> {
     setState(() {
       if(sleepDifficulty > 0) {
         sleepDifficulty -= 1;
+      }
+    });
+  }
+
+  void incSocialDif() {
+    setState(() {
+      socialDifficulty = socialDifficulty < 5 ? socialDifficulty + 1 : 5;
+    });
+  }
+  void decSocialDif() {
+    setState(() {
+      if(socialDifficulty > 0) {
+        socialDifficulty -= 1;
+      }
+    });
+  }
+
+  void incTravelDif() {
+    setState(() {
+      travelDifficulty = travelDifficulty < 5 ? travelDifficulty + 1 : 5;
+    });
+  }
+  void decTravelDif() {
+    setState(() {
+      if(travelDifficulty > 0) {
+        travelDifficulty -= 1;
+      }
+    });
+  }
+
+  void incEmployHomeDif() {
+    setState(() {
+      employHomeDifficulty = employHomeDifficulty < 5 ? employHomeDifficulty + 1 : 5;
+    });
+  }
+  void decEmployHomeDif() {
+    setState(() {
+      if(employHomeDifficulty > 0) {
+        employHomeDifficulty -= 1;
       }
     });
   }
@@ -237,6 +284,47 @@ class _ResponseFormState extends State<ResponseForm> {
               ),
             IncreaseButton(
               onPressed: incSleepDif,
+              ),
+          ],
+        ),
+
+        Row(
+          children: [
+            const Text('Social Life Difficulty: '),
+            const Expanded(child: SizedBox()),
+            Text(' $socialDifficulty '),
+            DecreaseButton(
+              onPressed: decSocialDif,
+              ),
+            IncreaseButton(
+              onPressed: incSocialDif,
+              ),
+          ],
+        ),
+
+        Row(
+          children: [
+            const Text('Travelling Difficulty: '),
+            const Expanded(child: SizedBox()),
+            Text(' $travelDifficulty '),
+            DecreaseButton(
+              onPressed: decTravelDif,
+              ),
+            IncreaseButton(
+              onPressed: incTravelDif,
+              ),
+          ],
+        ),
+        Row(
+          children: [
+            const Text('Employment/Homemaking Difficulty: '),
+            const Expanded(child: SizedBox()),
+            Text(' $employHomeDifficulty '),
+            DecreaseButton(
+              onPressed: decEmployHomeDif,
+              ),
+            IncreaseButton(
+              onPressed: incEmployHomeDif,
               ),
           ],
         ),
