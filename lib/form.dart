@@ -179,6 +179,10 @@ class _ResponseFormState extends State<ResponseForm> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        
+        Container(
+          child: Text("Rate your perception of the following catagories."),
+        ),
         Row(
           children: [
             Text('Total: $total'),
@@ -317,7 +321,7 @@ class _ResponseFormState extends State<ResponseForm> {
         ),
         Row(
           children: [
-            const Text('Employment/Homemaking Difficulty: '),
+            const Text('Employment/Homemake Difficulty: '),
             const Expanded(child: SizedBox()),
             Text(' $employHomeDifficulty '),
             DecreaseButton(
